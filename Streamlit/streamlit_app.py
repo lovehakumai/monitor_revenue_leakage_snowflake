@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 from snowflake.snowpark.context import get_active_session
 from model.get_data import get_data
+from model.get_log import get_log
 from graph.line_act_expect import line_act_expect
 from graph.user_payment_movement import user_payment_movement
 from model.log_extract import log_extract
@@ -71,6 +72,7 @@ if st.session_state.submit:
         data = allusers, 
         y = user_action_select
     )
+    st.dataframe(allusers)
     
     st.subheader("Start / Churned")
     start, churn = st.columns(2)
@@ -81,6 +83,7 @@ if st.session_state.submit:
             x = "CL_DATE",
             y = "UU_started"
         )
+        st.dataframe(is_started)
     with churn:
         st.write("UU Churned")
         st.line_chart(
@@ -88,6 +91,33 @@ if st.session_state.submit:
             x = "CL_DATE",
             y = "UU_churned"
         )
+        st.dataframe(is_churned)
 
 st.write("---")
-st.header("## Snowflake Credits")
+st.header("## Snowflake Query Credits")
+
+log_df = get_log()
+date_log = log_df.groupby("START_DATE").sum(["TOTAL_HOUR", "TOTAL_CREDIT"])
+st.bar_chart(
+    data = date_log,
+    y = ["TOTAL_HOUR", "TOTAL_CREDIT"]
+)
+query_log = (
+    log_df
+    .groupby(["QUERY_TEXT"])[["TOTAL_CREDIT", "TOTAL_HOUR"]]
+    .sum().reset_index()
+    .sort_values(by = ["TOTAL_CREDIT"], ascending = False)
+)
+user_log = (
+    log_df
+    .groupby(["USER_NAME"])[["TOTAL_CREDIT", "TOTAL_HOUR"]]
+    .sum().reset_index()
+    .sort_values(by = ["TOTAL_CREDIT"], ascending = False)
+)
+query, user = st.columns(2)
+with query: 
+    st.subheader("Query Text")
+    st.dataframe(query_log)
+with user: 
+    st.subheader("Users")
+    st.dataframe(user_log)

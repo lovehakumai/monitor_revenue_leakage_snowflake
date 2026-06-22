@@ -27,4 +27,11 @@ def line_act_expect(df):
         x = "CAL_MONTH",
         y = ["Expected", "Actual"]
     )
+    st.bar_chart(
+        data = result ,
+        x = "CAL_MONTH",
+        y = ["Expected", "Actual"],
+        stack=False,
+        horizontal= True
+    )
     return

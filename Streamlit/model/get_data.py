@@ -6,6 +6,7 @@ from snowflake.snowpark.context import get_active_session
 def get_data(daily_flg, date_range):
     
     session = get_active_session()
+    session.sql("ALTER SESSION SET QUERY_TAG = 'mrr_leakage_audit_app'")
     session.sql("USE DATABASE KAGGLE_SUBSCRIPTION").collect()
     session.sql("USE SCHEMA DBT_PJT").collect()
     

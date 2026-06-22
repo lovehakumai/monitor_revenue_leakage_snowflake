@@ -21,5 +21,11 @@ def user_payment_movement(df):
         x = "CAL_MONTH",
         stack = "normalize"
     )
+    st.bar_chart(
+        data = pivot, 
+        x = "CAL_MONTH",
+        y = ["Contraction", "Expansion", "First Payment", "Retain", "Stop Paying", "Suspended"],
+        horizontal=True
+    )
     return 
     
