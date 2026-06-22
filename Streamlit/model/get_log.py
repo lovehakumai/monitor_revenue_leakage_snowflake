@@ -21,5 +21,5 @@ def get_log():
                 END AS total_credit
         FROM TABLE(KAGGLE_SUBSCRIPTION.INFORMATION_SCHEMA.QUERY_HISTORY()) 
         WHERE QUERY_TAG = 'mrr_leakage_audit_app'
-        """).to_pandas()
+        AND QUERY_TEXT NOT LIKE '%INFORMATION_SCHEMA.QUERY_HISTORY%'""").to_pandas()
     return log_df 
