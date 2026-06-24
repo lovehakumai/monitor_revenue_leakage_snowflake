@@ -31,11 +31,11 @@ Environment :
 #### Usage Logs
 ※ Specify the date range first and click Submit to show the graph
 
-![USAGE DAILY LOGS](Stremlit/asset/2_st_usagelog.png)  
+![USAGE DAILY LOGS](Streamlit/asset/2_st_usagelog.png)  
 
-![START & CHURN](Stremlit/asset/3_st_stt_churn.png)  
+![START & CHURN](Streamlit/asset/3_st_stt_churn.png)  
 
 #### Query Credit Cost
 ※Estimated Credit from the `information_schema.query_history`
 
-![CREDIT](Stremlit/asset/4_st_credit.png)  
+![CREDIT](Streamlit/asset/4_st_credit.png)  
