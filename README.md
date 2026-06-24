@@ -26,10 +26,11 @@ Environment :
 
 ## 📊 Dashboard Sneak Peek
 #### Monthly Recursive Revenue(MRR) Movements
-![MRR MOVEMENTS](asset/1_st_mrr.png)
+![MRR MOVEMENTS](Streamlit/asset/1_st_mrr.png)  
+
 #### Usage Logs
 ※ Specify the date range first and click Submit to show the graph  
-![USAGE DAILY LOGS](asset/2_st_usagelog.png)  
+![USAGE DAILY LOGS](Stremlit/asset/2_st_usagelog.png)  
 ![START & CHURN](asset/3_st_stt_churn.png)
 
 #### Query Credit Cost
